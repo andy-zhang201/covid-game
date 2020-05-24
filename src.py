@@ -9,8 +9,8 @@ pygame.display.set_caption("First Game")
 #player/white blood cell code
 x = 0
 y = 0
-width = 50
-height = 50
+width = 100
+height = 100
 vel = 1
 
 run = True
@@ -26,7 +26,7 @@ virusX = random.randint(100,900)
 virusY = random.randint(50,150)
 #white bloodcells
 whiteImg = pygame.image.load("cell.png")
-whiteImg = pygame.transform.scale(whiteImg, (50, 50))
+whiteImg = pygame.transform.scale(whiteImg, (width, height))
 #Positive Y direction = moving downward.
 #Sets the downward velocity of the virus
 virusY_change = 1
@@ -47,8 +47,12 @@ while run:
 
     if keys[pygame.K_LEFT] and x > vel:
         x -= vel
-    if keys[pygame.K_RIGHT] and x < 500 - width - vel:
+    if keys[pygame.K_RIGHT] and x < 1000 - width - vel:
         x += vel
+    if keys[pygame.K_UP] and y > vel:
+        y -= vel
+    if keys[pygame.K_DOWN] and y < 800 - height - vel:
+        y += vel
 
 
     #Adds background
