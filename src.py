@@ -12,10 +12,12 @@ introtext = pygame.font.Font('Naughty_Cartoons.ttf', 115)
 #player/white blood cell code
 #Starting position in the bottom left
 x = 0
-y = 0
+y = 800
 width = 100
 height = 100
-vel = 1
+vel = 2
+virusHeight = 50
+virusWidth = 50
 
 run = True
 
@@ -31,19 +33,32 @@ def show_score(x,y):
     score = font.render("Score: "+ str(score_value), True, (255,255,255))
     win.blit(score,(x,y))
 
+## Three Things TO DO:
+#1. Enemy collision
+#2. Enemy Spawn
+#3. Enemy Respawning
 
+#virus code to create many viruses
+virusImg = []
+virusX = []
+virusY = []
+virusY_change = []
+virusX_change = []
+num_of_virus = 3
 
-#virus code
-virusImg = pygame.image.load("virus.png")
-virusImg = pygame.transform.scale(virusImg, (50, 50))
-virusX = random.randint(100,900)
-virusY = random.randint(50,150)
+for i in range(num_of_virus):
+    virusImg[i].append(pygame.image.load("virus.png"))
+    virusImg[i] = pygame.transform.scale(virusImg, (virusWidth, virusHeight))
+    virusX[i]=random.randint(100,900)
+    virusY[i]=random.randint(50,150)
+    virusY_change.append(random.randint(1,10))
+    virusX_change.append(random.randint(1,10))
+
 #white bloodcells
 whiteImg = pygame.image.load("cell.png")
 whiteImg = pygame.transform.scale(whiteImg, (width, height))
 #Positive Y direction = moving downward.
 #Sets the downward velocity of the virus
-virusY_change = 1
 
 def virus(x, y):
     win.blit(virusImg, (x, y))
@@ -67,7 +82,6 @@ while run:
         y -= vel
     if keys[pygame.K_DOWN] and y < 800 - height - vel:
         y += vel
-
 
     #Adds background
     win.fill((0,0,0))
