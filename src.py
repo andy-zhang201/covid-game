@@ -23,17 +23,23 @@ virusWidth = 50
 
 run = True
 
-score = 100
 score_value = 0
 scoreX = 100
 scoreY = 30
 
 boardX = 10
-boardY = 990
+boardY = 700
+
+lives = 3
+
 
 def show_score(x,y):
     score = font.render("Score: "+ str(score_value), True, (255,255,255))
     win.blit(score,(x,y))
+
+def show_lives(x,y):
+    life = font.render("Lives: " + str(lives), True, (255,255,255))
+    win.blit(life,(x,y))
 
 ## Three Things TO DO:
 #1. Enemy collision
@@ -46,14 +52,14 @@ virusX = []
 virusY = []
 virusY_change = []
 virusX_change = []
-num_of_virus = 3
+num_of_virus = 5
 
 for i in range(num_of_virus):
     virusImg.append(pygame.image.load("virus.png"))
     virusImg[i] = pygame.transform.scale(virusImg[i], (virusWidth, virusHeight))
     virusX.append(random.randint(100,900))
 
-    virusY.append(random.randint(50,150))
+    virusY.append(-50)
     virusY_change.append(random.randint(1,4))
     #virusX_change.append(random.randint(1,4))
 
@@ -85,7 +91,9 @@ def virus(virusI, x, y):
 
 while run:
     pygame.time.delay(7) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay
-    show_score(boardX,boardY)
+
+
+
     #Ends game when window is closed
     for event in pygame.event.get():  # This will loop through a list of any keyboard or mouse events.
         if event.type == pygame.QUIT: # Checks if the red button in the corner of the window is clicked
@@ -103,6 +111,7 @@ while run:
     if keys[pygame.K_DOWN] and y < 800 - height - vel:
         y += vel
 
+
     #Adds background
     win.fill((0,0,0))
 
@@ -119,10 +128,15 @@ while run:
             virusX[i] = random.randint(100,900)
             virusY[i] = -50
             score_value+=1
+        if virusY[i]> 825:
+            virusX[i] = random.randint(100,900)
+            virusY[i] = -50
+            lives -= 1
 
 
     #Shows the score
     show_score(scoreX,scoreY)
+    show_lives(boardX,boardY+50)
     # This updates the screen so we can see our rectangle
     pygame.display.update()
 
