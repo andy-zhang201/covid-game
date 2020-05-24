@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 
 pygame.init()
 
@@ -48,11 +49,13 @@ num_of_virus = 3
 
 for i in range(num_of_virus):
     virusImg.append(pygame.image.load("virus.png"))
-    virusImg[i] = pygame.transform.scale(virusImg, (virusWidth, virusHeight))
-    virusX[i]=random.randint(100,900)
-    virusY[i]=random.randint(50,150)
+    virusImg[i] = pygame.transform.scale(virusImg[i], (virusWidth, virusHeight))
+    virusX.append(random.randint(100,900))
+
+    virusY.append(random.randint(50,150))
     virusY_change.append(random.randint(1,10))
     virusX_change.append(random.randint(1,10))
+
 
 #white bloodcells
 whiteImg = pygame.image.load("cell.png")
@@ -60,8 +63,19 @@ whiteImg = pygame.transform.scale(whiteImg, (width, height))
 #Positive Y direction = moving downward.
 #Sets the downward velocity of the virus
 
-def virus(x, y):
-    win.blit(virusImg, (x, y))
+def collides(cellX,cellY,virX,virY):
+    #midpoint of virus
+    virX += 25
+    virY += 25
+    d = math.sqrt((virX-cellX)**2 + (virY-cellY)**2)
+    if d < 25:
+        return True
+    else:
+        return False
+
+
+def virus(virusI, x, y):
+    win.blit(virusI,(x, y))
 
 while run:
     pygame.time.delay(7) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay
@@ -89,8 +103,9 @@ while run:
     win.blit(whiteImg, (x,y))
     #pygame.draw.rect(win, (255,0,0), (x, y, width, height))  #This takes: window/surface, color, rect
 
-    #Draw virus image
-    virus(virusX, virusY)
+    for i in range(num_of_virus):
+        #Draw virus image
+        virus(virusImg[i],virusX[i], virusY[i])
 
     #Moves the virus Right
     virusY +=virusY_change
