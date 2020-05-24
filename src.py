@@ -6,6 +6,9 @@ pygame.init()
 win = pygame.display.set_mode((1000,800))
 pygame.display.set_caption("First Game")
 
+font = pygame.font.Font('Naughty_Cartoons.ttf', 16)
+introtext = pygame.font.Font('Naughty_Cartoons.ttf', 115)
+
 #player/white blood cell code
 #Starting position in the bottom left
 x = 0
@@ -16,14 +19,13 @@ vel = 1
 
 run = True
 
-#score
-#score_value = 0
-#font = pygame.font.Font("comicsansms",10)
+score = 100
+score_value = 0
 boardX = 10
 boardY = 990
 def show_score(x,y):
     score = font.render("Score: "+ str(score_value), True, (255,255,255))
-    screen.blit(score,(x,y))
+    win.blit(score,(x,y))
 
 
 
