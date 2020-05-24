@@ -7,17 +7,25 @@ win = pygame.display.set_mode((1000,800))
 pygame.display.set_caption("First Game")
 
 #player/white blood cell code
+#Starting position in the bottom left
 x = 0
-y = 0
+y = 650
 width = 50
 height = 50
-vel = 1
+vel = 5
 
 run = True
 
 #score
 #score_value = 0
 #font = pygame.font.Font("comicsansms",10)
+boardX = 10
+boardY = 990
+def show_score(x,y):
+    score = font.render("Score: "+ str(score_value), True, (255,255,255))
+    screen.blit(score,(x,y))
+
+
 
 #virus code
 virusImg = pygame.image.load("virus.png")
@@ -26,7 +34,7 @@ virusX = random.randint(100,900)
 virusY = random.randint(50,150)
 #white bloodcells
 whiteImg = pygame.image.load("cell.png")
-whiteImg = pygame.transform.scale(whiteImg, (50, 50))
+whiteImg = pygame.transform.scale(whiteImg, (150, 150))
 #Positive Y direction = moving downward.
 #Sets the downward velocity of the virus
 virusY_change = 1
@@ -36,7 +44,7 @@ def virus(x, y):
 
 while run:
     pygame.time.delay(7) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay
-
+    show_score(boardX,boardY)
     #Ends game when window is closed
     for event in pygame.event.get():  # This will loop through a list of any keyboard or mouse events.
         if event.type == pygame.QUIT: # Checks if the red button in the corner of the window is clicked
@@ -53,6 +61,7 @@ while run:
 
     #Adds background
     win.fill((0,0,0))
+
     win.blit(whiteImg, (x,y))
     #pygame.draw.rect(win, (255,0,0), (x, y, width, height))  #This takes: window/surface, color, rect
 
