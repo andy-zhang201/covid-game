@@ -47,7 +47,7 @@ virusX_change = []
 num_of_virus = 3
 
 for i in range(num_of_virus):
-    virusImg[i].append(pygame.image.load("virus.png"))
+    virusImg.append(pygame.image.load("virus.png"))
     virusImg[i] = pygame.transform.scale(virusImg, (virusWidth, virusHeight))
     virusX[i]=random.randint(100,900)
     virusY[i]=random.randint(50,150)
