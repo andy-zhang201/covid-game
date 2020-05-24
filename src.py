@@ -12,6 +12,7 @@ introtext = pygame.font.Font('Naughty_Cartoons.ttf', 115)
 
 #player/white blood cell code
 #Starting position in the bottom left
+
 x = 0
 y = 650
 width = 100
@@ -25,7 +26,7 @@ run = True
 score = 100
 score_value = 0
 scoreX = 100
-scoreY = 100
+scoreY = 30
 
 boardX = 10
 boardY = 990
@@ -64,6 +65,7 @@ whiteImg = pygame.transform.scale(whiteImg, (width, height))
 #Sets the downward velocity of the virus
 
 def collides(cellX,cellY,virX,virY):
+
     #midpoint of white blood cell
     cellX += 50
     cellY += 50
@@ -72,6 +74,7 @@ def collides(cellX,cellY,virX,virY):
     virY += 25
     d = math.sqrt((virX-cellX)**2 + (virY-cellY)**2)
     if d < 75:
+
         return True
     else:
         return False
@@ -115,6 +118,7 @@ while run:
         if collision:
             virusX[i] = random.randint(100,900)
             virusY[i] = -50
+            score_value+=1
 
 
     #Shows the score
