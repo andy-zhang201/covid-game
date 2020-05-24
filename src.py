@@ -21,8 +21,12 @@ run = True
 
 score = 100
 score_value = 0
+scoreX = 100
+scoreY = 100
+
 boardX = 10
 boardY = 990
+
 def show_score(x,y):
     score = font.render("Score: "+ str(score_value), True, (255,255,255))
     win.blit(score,(x,y))
@@ -76,6 +80,9 @@ while run:
 
     #Moves the virus Right
     virusY +=virusY_change
+
+    #Shows the score
+    show_score(scoreX,scoreY)
     # This updates the screen so we can see our rectangle
     pygame.display.update()
 
