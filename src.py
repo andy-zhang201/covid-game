@@ -1,7 +1,7 @@
 import pygame
 pygame.init()
 
-win = pygame.display.set_mode((500,500))
+win = pygame.display.set_mode((1000,800))
 pygame.display.set_caption("First Game")
 
 x = 50
@@ -12,6 +12,7 @@ vel = 5
 
 run = True
 
+# Game Loop
 while run:
     pygame.time.delay(100) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay
 
