@@ -6,6 +6,7 @@ pygame.init()
 win = pygame.display.set_mode((1000,800))
 pygame.display.set_caption("First Game")
 
+#player/white blood cell code
 x = 0
 y = 0
 width = 50
@@ -14,11 +15,21 @@ vel = 1
 
 run = True
 
+#score
+#score_value = 0
+#font = pygame.font.Font("comicsansms",10)
+
+#virus code
 virusImg = pygame.image.load("virus.png")
 virusImg = pygame.transform.scale(virusImg, (50, 50))
 virusX = random.randint(100,900)
 virusY = random.randint(50,150)
-virusX_change = 1
+#white bloodcells
+whiteImg = pygame.image.load("cell.png")
+whiteImg = pygame.transform.scale(whiteImg, (50, 50))
+#Positive Y direction = moving downward.
+#Sets the downward velocity of the virus
+virusY_change = 1
 
 def virus(x, y):
     win.blit(virusImg, (x, y))
@@ -39,16 +50,19 @@ while run:
     if keys[pygame.K_RIGHT] and x < 500 - width - vel:
         x += vel
 
+
     #Adds background
     win.fill((0,0,0))
-    pygame.draw.rect(win, (255,0,0), (x, y, width, height))  #This takes: window/surface, color, rect
+    win.blit(whiteImg, (x,y))
+    #pygame.draw.rect(win, (255,0,0), (x, y, width, height))  #This takes: window/surface, color, rect
 
-    #Draw
+    #Draw virus image
     virus(virusX, virusY)
 
-    virusX +=virusX_change
-
-    pygame.display.update() # This updates the screen so we can see our rectangle
+    #Moves the virus Right
+    virusY +=virusY_change
+    # This updates the screen so we can see our rectangle
+    pygame.display.update()
 
 #End loop
 pygame.quit()  # If we exit the loop this will execute and close our game
