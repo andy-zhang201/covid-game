@@ -18,7 +18,15 @@ while run:
     for event in pygame.event.get():  # This will loop through a list of any keyboard or mouse events.
         if event.type == pygame.QUIT: # Checks if the red button in the corner of the window is clicked
             run = False  # Ends the game loop
-
+            
+    keys = pygame.key.get_pressed()
+    
+    if keys[pygame.K_RIGHT] and x >vel:
+        x+= vel
+    if keys[pygame.K_LEFT] and x < 500-width:
+        x-=vel
+    
+    win.fill((0,0,0))
     pygame.draw.rect(win, (255,0,0), (x, y, width, height))  #This takes: window/surface, color, rect
     pygame.display.update() # This updates the screen so we can see our rectangle
 
