@@ -13,7 +13,7 @@ introtext = pygame.font.Font('Naughty_Cartoons.ttf', 115)
 #player/white blood cell code
 #Starting position in the bottom left
 x = 0
-y = 800
+y = 650
 width = 100
 height = 100
 vel = 2
@@ -53,8 +53,8 @@ for i in range(num_of_virus):
     virusX.append(random.randint(100,900))
 
     virusY.append(random.randint(50,150))
-    virusY_change.append(random.randint(1,10))
-    virusX_change.append(random.randint(1,10))
+    virusY_change.append(random.randint(1,4))
+    #virusX_change.append(random.randint(1,4))
 
 
 #white bloodcells
@@ -64,11 +64,14 @@ whiteImg = pygame.transform.scale(whiteImg, (width, height))
 #Sets the downward velocity of the virus
 
 def collides(cellX,cellY,virX,virY):
+    #midpoint of white blood cell
+    cellX += 50
+    cellY += 50
     #midpoint of virus
     virX += 25
     virY += 25
     d = math.sqrt((virX-cellX)**2 + (virY-cellY)**2)
-    if d < 25:
+    if d < 75:
         return True
     else:
         return False
@@ -106,9 +109,15 @@ while run:
     for i in range(num_of_virus):
         #Draw virus image
         virus(virusImg[i],virusX[i], virusY[i])
+        virusY[i] +=virusY_change[i]
+        collision = collides(x,y,virusX[i],virusY[i])
+        if collision:
+            virusX[i] = random.randint(100,900)
+            virusY[i] = -50
 
-    #Moves the virus Right
-    virusY +=virusY_change
+
+    #Moves the virus Down
+
 
     #Shows the score
     show_score(scoreX,scoreY)
