@@ -15,9 +15,9 @@ vel = 1
 run = True
 
 virusImg = pygame.image.load("virus.png")
-virusImg = pygame.transform.scale(virusImg, (300, 300))
-virusX = 370
-virusY = 480
+virusImg = pygame.transform.scale(virusImg, (50, 50))
+virusX = random.randint(100,900)
+virusY = random.randint(50,150)
 virusX_change = 0
 
 def virus(x, y):
@@ -40,8 +40,10 @@ while run:
     win.fill((0,0,0))
     pygame.draw.rect(win, (255,0,0), (x, y, width, height))  #This takes: window/surface, color, rect
     virus(virusX, virusY)
+
     pygame.display.update() # This updates the screen so we can see our rectangle
 
+#End loop
 pygame.quit()  # If we exit the loop this will execute and close our game
 
 #IMages from Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
