@@ -1,4 +1,6 @@
 import pygame
+import random
+
 pygame.init()
 
 win = pygame.display.set_mode((1000,800))
@@ -12,12 +14,15 @@ vel = 5
 
 run = True
 
-virus = pygame.image.load("virus.png")
+virusImg = pygame.image.load("virus.png")
+virusImg = pygame.transform.scale(virusImg, (300, 300))
 virusX = 370
 virusY = 480
 virusX_change = 0
 
-#Game loop
+def virus(x, y):
+    win.blit(virusImg, (x, y))
+
 while run:
     pygame.time.delay(100) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay
 
@@ -34,6 +39,7 @@ while run:
 
     win.fill((0,0,0))
     pygame.draw.rect(win, (255,0,0), (x, y, width, height))  #This takes: window/surface, color, rect
+    virus(virusX, virusY)
     pygame.display.update() # This updates the screen so we can see our rectangle
 
 pygame.quit()  # If we exit the loop this will execute and close our game
