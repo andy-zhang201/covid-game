@@ -12,7 +12,7 @@ vel = 5
 
 run = True
 
-# Game Loop
+#Game loop
 while run:
     pygame.time.delay(100) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay
 
