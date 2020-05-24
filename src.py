@@ -16,7 +16,7 @@ x = 0
 y = 650
 width = 100
 height = 100
-vel = 2
+vel = 3
 virusHeight = 50
 virusWidth = 50
 
@@ -109,14 +109,12 @@ while run:
     for i in range(num_of_virus):
         #Draw virus image
         virus(virusImg[i],virusX[i], virusY[i])
+        #Moves the virus Down
         virusY[i] +=virusY_change[i]
         collision = collides(x,y,virusX[i],virusY[i])
         if collision:
             virusX[i] = random.randint(100,900)
             virusY[i] = -50
-
-
-    #Moves the virus Down
 
 
     #Shows the score
